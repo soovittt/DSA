@@ -24,16 +24,13 @@ def minSubsetSumDifference(arr, n) -> int:
             dp[i][j] = dp[i-1][j]
             if(arr[i-1] <= j ):
                 dp[i][j] |= dp[i-1][j-arr[i-1]]
-    
     diff = sys.maxsize
- 
     # Find the largest j such that dp[n][j]
     # is true where j loops from sum/2 t0 0
     for j in range(target // 2, -1, -1):
         if dp[n][j] == True:
             diff = target - (2 * j)
             break
-        
     return diff
 
 

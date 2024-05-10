@@ -13,8 +13,6 @@ class Solution:
         down = self.recursive_solver_memo(i+1,j,m,n,dp)
         right = self.recursive_solver_memo(i,j+1,m,n,dp)
         return down + right
-
-
     def uniquePaths(self, m: int, n: int) -> int:
         dp = [[0 for _ in range(n)] for _ in range(m)]  # Correct initialization
         for i in range(m):
@@ -25,6 +23,14 @@ class Solution:
                     dp[i][j] = dp[i - 1][j] + dp[i][j - 1]  # Updating the dp array
         return dp[m - 1][n - 1]
     
+
+    def recursive_solver_memo(self,i,j,m,n,dp):
+        if(i==m-1 and j==n-1):return 1
+        if(i>m or j > n): return 0
+        if(dp[i][j]!=-1):return dp[i][j]
+        down = self.recursive_solver_memo(i+1,j,m,n,dp)
+        right = self.recursive_solver_memo(i,j+1,m,n,dp)
+        return down + right
     def uniquePaths_memoisation(self, m: int, n: int) -> int:
         dp = [[-1 for i in range(n+1)] for j in range(m+1)]
         return self.recursive_solver_memo(0,0,m,n,dp)

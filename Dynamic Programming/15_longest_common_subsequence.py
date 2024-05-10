@@ -34,7 +34,6 @@ class Solution:
               dp[i][j] = 1 + self.lcs_recur(i-1,j-1,s,t,dp)
               return dp[i][j]
         dp[i][j] =  max(self.lcs_recur(i,j-1,s,t,dp),self.lcs_recur(i-1,j,s,t,dp))
-
     def longestCommonSubsequence(self, text1, text2):
         m = len(text1)
         n = len(text2)
