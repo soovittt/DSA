@@ -20,10 +20,6 @@ def solveMemo(n,x,y,z,dp):
     c = solveMemo(n-z,x,y,z,dp) + 1
     dp[n] = max(a,max(b,c))
     return dp[n]
-    
-
-
-
 def cutSegments(n, x, y, z):
     dp = [-1]*(n+1)
     ans = solveMemo(n,x,y,z,dp)

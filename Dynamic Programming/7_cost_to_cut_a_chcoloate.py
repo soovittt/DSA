@@ -24,7 +24,6 @@ def dynamic_solver(i, j, cuts, dp):
         mini = min(mini, cost)  # Fix: Update minimum cost
     dp[i][j] = mini  # Fix: Save the calculated minimum cost
     return dp[i][j]
-
 def cost(n: int, c: int, cuts: List[int]) -> int:
     cut_arr = cuts
     cut_arr.append(n)

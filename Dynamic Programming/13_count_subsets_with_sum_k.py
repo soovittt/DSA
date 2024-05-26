@@ -10,7 +10,6 @@ def recur(index,target,arr,dp):
         pick = recur(index-1,target-arr[index],arr,dp)
     dp[index][target] = pick + not_pick
     return dp[index][target]
-
 def findWays(arr, k):
     n = len(arr)
     dp = [[-1 for col in range(k+1)] for row in range(n+1)]

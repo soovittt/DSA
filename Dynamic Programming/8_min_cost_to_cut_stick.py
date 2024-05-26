@@ -9,8 +9,6 @@ class Solution:
             mini = min(mini,cost)
             dp[i][j] = mini
         return dp[i][j]
-            
-
     def minCost(self, n, cuts):
         c = len(cuts)
         cuts.append(n)

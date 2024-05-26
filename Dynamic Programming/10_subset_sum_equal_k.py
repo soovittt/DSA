@@ -10,8 +10,6 @@ def recur(index , target , arr , dp):
         take = recur(index-1,target-arr[index],arr,dp)
     dp[index][target] = take or not_take
     return dp[index][target]
-
-
 def subsetSumToK(n, k, arr):
     dp = [[-1 for i in range(k+1)] for j in range(n)]
     return recur(n-1,k,arr,dp)
