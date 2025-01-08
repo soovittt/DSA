@@ -1,28 +1,27 @@
 
 
-def calculatePairs(index, target, length, stocksProfit, dp, used):
-    if target == 0 and length == 2:
+def calculatePairs(index, target, length, stocksProfit, dp):
+    if target == 0:
+        print("i : ",index)
         return 1
-    if index < 0 or length == 2:
-        return 0
+    if index == 0:
+        return 1 if stocksProfit[0] == target else 0
     if dp[index][target][length] != -1:
         return dp[index][target][length]
-    
-    # Exclude the current stock
-    dp[index][target][length] = calculatePairs(index - 1, target, length, stocksProfit, dp, used)
-    
-    # Include the current stock if it's not used yet
-    if stocksProfit[index] <= target and index not in used:
-        used.add(index)
-        dp[index][target][length] += calculatePairs(index - 1, target - stocksProfit[index], length + 1, stocksProfit, dp, used)
-        used.remove(index)
-    
+    not_pick = calculatePairs(index - 1, target, length, stocksProfit, dp)
+    pick = 0 
+    if stocksProfit[index] <= target and length < 2:
+        pick = calculatePairs(index - 1, target - stocksProfit[index], length + 1, stocksProfit, dp)
+    dp[index][target][length] = pick + not_pick
     return dp[index][target][length]
 
 def stockPairs(stocksProfit, target):
     n = len(stocksProfit)
-    dp = [[[-1 for _ in range(3)] for _ in range(target + 1)] for _ in range(n + 1)]
-    return calculatePairs(n - 1, target, 0, stocksProfit, dp, set())
+    # Sort the stocksProfit array
+    stocksProfit.sort()
+    print(stocksProfit)
+    dp = [[[-1 for k in range(3)] for i in range(target + 1)] for j in range(n + 1)]
+    return calculatePairs(n - 1, target, 0, stocksProfit, dp)
 
 # 1
 # 3
